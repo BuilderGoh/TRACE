@@ -39,6 +39,8 @@ Given a public or synthetic Windows incident dataset containing EVTX/Sysmon tele
 
 See [the phased roadmap](docs/TRACE_ROADMAP.md).
 
+For a source-built development environment isolated from the upstream baseline deployment, see [the development guide](docs/TRACE_DEVELOPMENT.md).
+
 ## Getting started: original ARTEX baseline
 
 At this stage, the repository is an upstream-derived application, **not yet a configured DFIR release**.

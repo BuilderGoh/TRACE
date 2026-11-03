@@ -12,12 +12,12 @@
       "submitting": "Logging in…",
       "title": "Log in",
       "username": "Username",
-      "welcome": "Welcome back. Enter your password to continue using ARTEX."
+      "welcome": "Welcome back. Enter your password to continue using TRACE."
     },
     "setup": {
       "confirmPassword": "Confirm password",
       "confirmPlaceholder": "Re-enter your password",
-      "desc": "This is your first time using ARTEX. Set a login password for your account (at least 8 characters).",
+      "desc": "This is your first time using TRACE. Set a login password for your account (at least 8 characters).",
       "errorBackend": "Can't connect to the backend service",
       "errorInit": "Initialization failed",
       "errorMismatch": "The two passwords don't match",

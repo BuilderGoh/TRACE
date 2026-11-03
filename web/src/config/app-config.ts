@@ -11,30 +11,30 @@ const currentYear = new Date().getFullYear();
 // 전환에는 반응하지 않는다(탭 제목 한 줄 수준이라 허용한다).
 const META_BY_LOCALE: Record<Locale, { title: string; description: string }> = {
   en: {
-    title: "ARTEX: Autonomous Penetration Testing Console",
-    description: "An LLM-driven system console for autonomous penetration testing",
+    title: "TRACE: Threat Reconstruction & Analysis Coordination Engine",
+    description: "Agentic digital forensics and threat-hunting platform",
   },
   ko: {
-    title: "ARTEX: 자율 침투 테스트 콘솔",
-    description: "LLM 기반으로 자율 침투 테스트를 수행하는 시스템 콘솔",
+    title: "TRACE: 위협 재구성 및 분석 조정 엔진",
+    description: "에이전트 기반 디지털 포렌식 및 위협 헌팅 플랫폼",
   },
   zh: {
-    title: "ARTEX — 自主渗透测试控制台",
-    description: "LLM 驱动的自主渗透测试系统控制台",
+    title: "TRACE — 威胁重建与分析协调引擎",
+    description: "智能体驱动的数字取证与威胁狩猎平台",
   },
   es: {
-    title: "ARTEX: Consola de Pruebas de Penetración Autónomas",
-    description: "Una consola de sistema impulsada por LLM para pruebas de penetración autónomas",
+    title: "TRACE: Motor de Reconstrucción de Amenazas y Coordinación de Análisis",
+    description: "Plataforma de análisis forense digital y búsqueda de amenazas con agentes de IA",
   },
   ja: {
-    title: "ARTEX: 自律型ペネトレーションテストコンソール",
-    description: "LLM を活用して自律的にペネトレーションテストを行うシステムコンソール",
+    title: "TRACE: 脅威再構築・分析調整エンジン",
+    description: "エージェント型デジタルフォレンジックおよび脅威ハンティングプラットフォーム",
   },
 };
 
 export const APP_CONFIG = {
-  name: "ARTEX",
+  name: "TRACE",
   version: packageJson.version,
-  copyright: `© ${currentYear}, ARTEX.`,
+  copyright: `© ${currentYear}, TRACE.`,
   meta: META_BY_LOCALE[resolveLocale()] ?? META_BY_LOCALE[DEFAULT_LOCALE],
 };

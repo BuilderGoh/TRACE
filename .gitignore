@@ -71,6 +71,7 @@ agent/d2_models_live_test.go
 
 # API 키·비밀: 어디에 두든 커밋 금지
 *.env
+.env.trace-dev
 secrets.env
 
 # --- Windows 소스 빌드 로컬 산출물: 커밋 금지 ---

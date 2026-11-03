@@ -12,12 +12,12 @@
       "submitting": "로그인 중…",
       "title": "로그인",
       "username": "사용자 이름",
-      "welcome": "다시 오신 것을 환영합니다. 비밀번호를 입력하면 ARTEX 를 계속 사용할 수 있습니다."
+      "welcome": "다시 오신 것을 환영합니다. 비밀번호를 입력하면 TRACE 를 계속 사용할 수 있습니다."
     },
     "setup": {
       "confirmPassword": "비밀번호 확인",
       "confirmPlaceholder": "비밀번호를 다시 입력해 주세요",
-      "desc": "ARTEX 를 처음 사용합니다. 계정에 로그인 비밀번호를 설정해 주세요(8자 이상).",
+      "desc": "TRACE 를 처음 사용합니다. 계정에 로그인 비밀번호를 설정해 주세요(8자 이상).",
       "errorBackend": "백엔드 서비스에 연결할 수 없습니다",
       "errorInit": "초기화에 실패했습니다",
       "errorMismatch": "두 번 입력한 비밀번호가 일치하지 않습니다",

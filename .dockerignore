@@ -1,4 +1,5 @@
 .git
+.env.trace-dev
 **/node_modules
 web/.next
 web/out

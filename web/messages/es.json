@@ -12,12 +12,12 @@
       "submitting": "Iniciando sesión…",
       "title": "Iniciar sesión",
       "username": "Usuario",
-      "welcome": "Bienvenido de nuevo. Introduzca su contraseña para seguir usando ARTEX."
+      "welcome": "Bienvenido de nuevo. Introduzca su contraseña para seguir usando TRACE."
     },
     "setup": {
       "confirmPassword": "Confirmar contraseña",
       "confirmPlaceholder": "Vuelva a introducir la contraseña",
-      "desc": "Es la primera vez que usa ARTEX. Establezca una contraseña de inicio de sesión para su cuenta (al menos 8 caracteres).",
+      "desc": "Es la primera vez que usa TRACE. Establezca una contraseña de inicio de sesión para su cuenta (al menos 8 caracteres).",
       "errorBackend": "No se puede conectar con el servicio backend",
       "errorInit": "La inicialización falló",
       "errorMismatch": "Las dos contraseñas no coinciden",
