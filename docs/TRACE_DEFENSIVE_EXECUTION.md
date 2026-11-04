@@ -1,6 +1,6 @@
 # TRACE defensive-execution controls and coverage
 
-**Status:** source review and pinned-dependency dispatch inspection
+**Status:** source review, pinned-dependency dispatch inspection, isolated prototype harness
 **Baseline:** `dfd4451` (`feat: establish TRACE branding and isolated development build`)
 **Purpose:** document which execution controls are present, where they are wired, and which reachable paths are outside the verified Guard boundary.
 
@@ -10,7 +10,15 @@ TRACE does not currently have a universal, fail-closed defensive-execution bound
 
 The pinned `github.com/Autumn-27/norma v0.4.3` dispatch was inspected in disposable `golang:1.26.3` containers with this repository mounted read-only. The observed dispatch evaluates ordinary permission checks before `PreToolUse`; a blocking hook prevents the tool call. `ModeBypass` skips ordinary permission checks, but explicit denials and hooks that are actually wired may still block. These findings describe the inspected dependency version and code paths, not an OS sandbox or a universal authorization policy.
 
-This is a Phase 1B.2 inventory of the current baseline, not a claim that defensive-only mode is implemented. No baseline behavior is changed by this document.
+This is a Phase 1B.2 inventory plus an isolated prototype harness, not a claim that defensive-only mode is implemented or safe to enable in the running app. The harness is not wired into any baseline execution path.
+
+## Isolated synthetic-data prototype
+
+Package `restricteddfir` provides a small, standalone dispatch harness. Its only accepted tool name is `analyze_synthetic_events`; all other names are denied. The accepted operation strictly decodes a bounded JSON input, requires `synthetic: true`, rejects unknown fields and malformed event types, and returns deterministic sorted counts by event type. It performs no filesystem, process, network, agent, MCP, or external-tool operations. Positive and negative unit tests are in `restricteddfir/dispatch_test.go`.
+
+The `synthetic` flag is a caller-provided label, not provenance verification. It cannot establish that data is genuinely synthetic, prevent a caller from mislabelling real evidence, or protect any other TRACE code path. The package is deliberately not registered with Norma, an agent, an API route, an MCP server, or any ordinary app configuration. Treat it only as a unit-testable policy/analyzer prototype. It must remain unavailable in the running app while alternate entry points and side-effect boundaries remain uncontrolled and untested.
+
+Prototype verification status: `go test ./restricteddfir -v` passed in `golang:1.26.3` (all 5 top-level tests and their subtests), and `go vet ./restricteddfir` completed successfully. Validation used a disposable `docker run --rm --network none --read-only` container, mounted the repository read-only, and redirected Go build/module caches and temporary build files to a temporary host directory. An initial test attempt failed because Go's default `/tmp` was mounted `noexec`; setting `GOTMPDIR` to a separate executable container tmpfs resolved that harness configuration issue, with no source changes needed. A repository search found no package/tool references outside `restricteddfir` and this documentation. Docker reported the pre-existing `trace-artex-1` and `trace-postgres-1` containers running; validation did not start, stop, or modify them. These results validate only this package's unit behavior and vet checks, not a complete defensive execution boundary.
 
 ## Control behavior
 
@@ -66,7 +74,7 @@ The inspected implementation does not establish:
 
 ## Phase 1B.2 conclusion
 
-The checked-in baseline has useful, configurable interception and audit functionality on selected agent-session paths, but no verified universal enforcement choke point. Phase 1's defensive-only exit criterion remains unmet: the roadmap requires agent conversations and tool calls to stay within an authorized evidence-analysis environment (`docs/TRACE_ROADMAP.md:16-24`). This document records the gap; it does not change policy, prompts, or runtime behavior.
+The checked-in baseline has useful, configurable interception and audit functionality on selected agent-session paths, but no verified universal enforcement choke point. The isolated package prototype does not change this conclusion. Phase 1's defensive-only exit criterion remains unmet: the roadmap requires agent conversations and tool calls to stay within an authorized evidence-analysis environment (`docs/TRACE_ROADMAP.md:16-24`).
 
 Before claiming a defensive-only mode, the implementation needs a shared enforcement boundary immediately before side effects, explicit fail-closed behavior, coverage of direct and dynamically added tool paths, and tests showing prohibited calls are denied through each entry point. Process and network isolation must be designed and tested separately from agent hooks.
 
