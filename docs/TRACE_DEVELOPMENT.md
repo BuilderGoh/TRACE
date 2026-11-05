@@ -50,6 +50,10 @@ uses it to scope the development network and volumes.
   than the published runtime image (for example, it does not install Chromium
   or Playwright).
 - The application retains upstream ARTEX behavior, identifiers, and tools.
-  TRACE's planned DFIR workflows and safety boundaries are not implemented yet.
+  TRACE's planned DFIR workflows and application-wide safety boundaries are
+  not implemented yet. A separate synthetic-only analysis endpoint is
+  available when `TRACE_RESTRICTED_DFIR_ENABLED=true`; it requires API
+  authentication and accepts only explicitly labelled synthetic event data.
+  See `TRACE_DEFENSIVE_EXECUTION.md` for its scope and limitations.
 - Keep `.env.trace-dev` local. Never commit API keys, incident evidence,
   credentials, or client data.

@@ -28,6 +28,7 @@ import (
 	"github.com/Autumn-27/artex/llmrec"
 	"github.com/Autumn-27/artex/notify"
 	"github.com/Autumn-27/artex/report"
+	"github.com/Autumn-27/artex/restricteddfir"
 	"github.com/Autumn-27/artex/traffic"
 	"github.com/Autumn-27/norma/llm"
 	actool "github.com/Autumn-27/norma/tool"
@@ -760,6 +761,7 @@ func (s *Server) chatAgentRef() *agent.ChatAgent {
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
 	s.registerSideRoutes(mux)
+	mux.HandleFunc("POST "+restricteddfir.EndpointPath, s.analyzeSyntheticDFIR)
 
 	// Auth routes — exempt from JWT check (handled in requireAuth)
 	mux.HandleFunc("GET /api/auth/status", s.authStatus)
@@ -1050,6 +1052,14 @@ func (s *Server) Handler() http.Handler {
 	root.Handle("/api/", api)
 	root.Handle("/", s.webuiHandler())
 	return root
+}
+
+func (s *Server) analyzeSyntheticDFIR(w http.ResponseWriter, r *http.Request) {
+	enabled, _ := strconv.ParseBool(os.Getenv(restricteddfir.FeatureFlagEnv))
+	s.cfgMu.Lock()
+	provider := s.llmDirect
+	s.cfgMu.Unlock()
+	restricteddfir.ServeHTTP(w, r, enabled, provider)
 }
 
 // --- handlers ---

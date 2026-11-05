@@ -1,6 +1,7 @@
-// Package restricteddfir contains an isolated prototype harness for analyzing
-// explicitly labelled synthetic event data. It is not wired into TRACE's agent
-// or server execution paths and does not establish a security boundary for them.
+// Package restricteddfir contains a bounded synthetic-event analyzer exposed
+// through a dedicated opt-in server endpoint. It is not wired into TRACE's
+// agent or ordinary execution paths and does not establish a security boundary
+// for them.
 package restricteddfir
 
 import (
